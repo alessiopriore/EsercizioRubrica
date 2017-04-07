@@ -9,7 +9,6 @@ public class UtenteView {
 	public UtenteView(UtenteModel utente){
 		this.utente = utente;
 	}
-	
 	public UtenteModel getUtente() {
 		return utente;
 	}
@@ -21,6 +20,4 @@ public class UtenteView {
 	public void printInfo(){
 		System.out.println(utente.toString());
 	}
-
-
 }
