@@ -11,9 +11,12 @@ public class UtenteModel {
 	private String citta;
 	private String provincia;
 	private String email;
+	private TipoTelModel tipocell;
+	
+	public UtenteModel(){};
 	
 	public UtenteModel(int id, String nome, String cognome, String data_nascita, String num_tel, int id_modello,
-			String citta, String provincia, String email) {
+			String citta, String provincia, String email,TipoTelModel tipocell) {
 		this.id = id;
 		this.nome = nome;
 		this.cognome = cognome;
@@ -23,6 +26,7 @@ public class UtenteModel {
 		this.citta = citta;
 		this.provincia = provincia;
 		this.email = email;
+		this.tipocell = tipocell;
 	}
 	
 	
@@ -39,7 +43,8 @@ public class UtenteModel {
 		.append("id_modello = ").append(id_modello).append("\n")
 		.append("citta = ").append(citta).append("\n")
 		.append("provincia = ").append(provincia).append("\n")
-		.append("email = ").append(email).append("\n");
+		.append("email = ").append(email).append("\n")
+		.append("Modello = ").append(tipocell.getModello()).append("\n");
 			
 		return builder.toString();
 	}
@@ -99,5 +104,11 @@ public class UtenteModel {
 		this.email = email;
 	}
 	
-	
+	public TipoTelModel getTipocell() {
+		return tipocell;
+	}
+
+	public void setTipocell(TipoTelModel tipocell) {
+		this.tipocell = tipocell;
+	}
 }

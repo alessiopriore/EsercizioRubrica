@@ -13,12 +13,12 @@ public class TipoTelController {
 	}
 	
 	public void updateView(TipoTelModel tipoTelModel){
-		tipoTelView.setTipoTelView(tipoTelModel);
+		tipoTelView.setTipoTel(tipoTelModel);
 	}
 	
 	public void updateModel(TipoTelView tipoTelView){
 		
-		this.tipoTelModel = tipoTelView.getTipoTelModel();		
+		this.tipoTelModel = tipoTelView.getTipoTel();		
 	}
 	
 	public TipoTelModel getTipoTelModel() {

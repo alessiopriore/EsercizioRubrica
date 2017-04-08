@@ -5,14 +5,18 @@ public class TipoTelModel {
 	private String modello;
 	private String marca;
 	private String size;
-	private String weight;
+	private int weight;
 	
-	public TipoTelModel(int id, String modello, String marca, String size, String weight) {
+	
+	public TipoTelModel(){};
+	
+	public TipoTelModel(int id, String modello, String marca, String size, int weight) {
 		this.id = id;
 		this.modello = modello;
 		this.marca = marca;
 		this.size = size;
 		this.weight = weight;
+		
 	}
 	
 	@Override
@@ -53,11 +57,11 @@ public class TipoTelModel {
 	public void setSize(String size) {
 		this.size = size;
 	}
-	public String getWeight() {
+	public int getWeight() {
 		return weight;
 	}
-	public void setWeight(String weight) {
+	public void setWeight(int weight) {
 		this.weight = weight;
 	}
-	
+		
 }

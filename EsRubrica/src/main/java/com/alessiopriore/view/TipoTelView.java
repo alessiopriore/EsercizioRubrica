@@ -1,21 +1,25 @@
 package com.alessiopriore.view;
 
-public class TipoTelView {
-	TipoTelView tipoTelView;
+import com.alessiopriore.model.TipoTelModel;
 
-	public TipoTelView(TipoTelView tipoTelView) {
-		this.tipoTelView = tipoTelView;
+public class TipoTelView {
+	private TipoTelModel tipoTel;
+	
+	public TipoTelView(){};
+	
+	public TipoTelView(TipoTelModel tipoTel) {
+		this.tipoTel = tipoTel;
 	}
 
 	public void printInfo(){
-		System.out.println(tipoTelView.toString());
+		System.out.println(tipoTel.toString());
 	}
 	
-	public TipoTelView getTipoTelView() {
-		return tipoTelView;
+	public TipoTelModel getTipoTel() {
+		return tipoTel;
 	}
 
-	public void setTipoTelView(TipoTelView tipoTelView) {
-		this.tipoTelView = tipoTelView;
+	public void setTipoTel(TipoTelModel tipoTelModel) {
+		this.tipoTel = tipoTel;
 	}
 }
