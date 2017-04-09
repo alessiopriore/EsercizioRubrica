@@ -44,7 +44,12 @@ public class App
     	
     	while(scelta != 0){
     		System.out.println(menu);
-        	scelta = Integer.parseInt(input.readLine());
+    		try {
+    			scelta = Integer.parseInt(input.readLine());
+    		}catch (NumberFormatException e){
+    			System.out.println("il valore da inserire deve essere un intero");
+    		}
+        	
     		switch(scelta){
     		   case 1:
     			   System.out.println("Inserisci");
@@ -78,7 +83,6 @@ public class App
     		    		   System.out.println("Inserimento andato a buon fine");
     		    	   else
     		    		   System.out.println("Inserimento fallito");
-    		       getInsertUtenteTODB(utenteModel, modello);
     		      }else{
     		    	  System.out.println("Telefono non presente");
     		    	  System.out.println("Inserire prima il modello di telefono e le caratteristiche nel db");
@@ -163,7 +167,13 @@ public class App
     			   dim = input.readLine();
     			   tipoTelModel.setSize(dim);
     			   System.out.println("Inserisci il peso: ");
-    			   peso = Integer.parseInt(input.readLine());
+    				try {
+    					peso = Integer.parseInt(input.readLine());
+    	    		}catch (NumberFormatException e){
+    	    			System.err.println("il valore da inserire deve essere un intero");
+    	    			System.out.println("Reinserire il peso: ");
+    	    			peso = Integer.parseInt(input.readLine());
+    	    		}
     			   tipoTelModel.setWeight(peso);
     			   if (getInsertTelTODB(tipoTelModel)){
     				   System.out.println("inserimento andato a buon fine");
