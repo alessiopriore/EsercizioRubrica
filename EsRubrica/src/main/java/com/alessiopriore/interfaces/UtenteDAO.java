@@ -4,7 +4,7 @@ import com.alessiopriore.model.UtenteModel;
 
 public interface UtenteDAO {
 	public UtenteModel getUtenteInfo(String email);
-	public boolean updateUtenteInfo(String citta, int tel, String mail);
+	public boolean updateUtenteInfo(String citta, String tel, String mail);
 	public boolean deleteUtenteInfo(String email);
 	public boolean insertUtente(UtenteModel utenteModel,String modello);
 	

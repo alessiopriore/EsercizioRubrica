@@ -36,13 +36,15 @@ public class TipoTelDAOImpl implements TipoTelDAO{
 				stmtTelInfo.setString(1, modello);
 				 
 				ResultSet rsTelInfoSet = stmtTelInfo.executeQuery();
-					
+				
 				if(rsTelInfoSet.first()){
 					tipoTelModel.setModello(rsTelInfoSet.getString("modello"));
 					tipoTelModel.setMarca(rsTelInfoSet.getString("marca"));
 					tipoTelModel.setSize(rsTelInfoSet.getString("size"));
 					tipoTelModel.setWeight(rsTelInfoSet.getInt("weight"));
-				  }
+				  }else{
+						tipoTelModel = null;
+					}
 				}
 				
 				catch(SQLException e) {
@@ -51,7 +53,7 @@ public class TipoTelDAOImpl implements TipoTelDAO{
 				finally{
 				    DbUtils.closeQuietly(conn); 
 				}
-					
+				
 			return tipoTelModel;
 	}
 

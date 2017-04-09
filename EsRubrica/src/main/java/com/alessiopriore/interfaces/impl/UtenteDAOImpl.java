@@ -66,7 +66,7 @@ public class UtenteDAOImpl implements UtenteDAO{
 		return utenteModel;
 	}
 
-	public boolean updateUtenteInfo(String citta, int tel, String mail) {
+	public boolean updateUtenteInfo(String citta, String tel, String mail) {
 		// TODO Auto-generated method stub
 		MysqlDataSource dataSource = new MysqlDataSource();
 		dataSource.setUser("root");
@@ -77,14 +77,24 @@ public class UtenteDAOImpl implements UtenteDAO{
 				
 		try {
 			    conn = (Connection) dataSource.getConnection();
+			    PreparedStatement stmtTelInfo =  (PreparedStatement) conn.prepareStatement(TEL_INFO);
 				PreparedStatement stmtUtenteUpdate =  (PreparedStatement) conn.prepareStatement(UPDATE_INFO);
-
-				stmtUtenteUpdate.setString(1,citta);
-				stmtUtenteUpdate.setInt(2,tel);
-				stmtUtenteUpdate.setString(3,mail);
-				if (stmtUtenteUpdate.executeUpdate() > 0){
-					return true;
-				}
+				
+				stmtTelInfo.setString(1, tel);
+			    ResultSet res = stmtTelInfo.executeQuery();
+			    
+			    if (res.first()){
+			    	stmtUtenteUpdate.setString(1,citta);
+					stmtUtenteUpdate.setInt(2,res.getInt("id"));
+					stmtUtenteUpdate.setString(3,mail);
+					if (stmtUtenteUpdate.executeUpdate() > 0){
+						return true;
+					}
+			    }else{
+			    	System.out.println("Telefono non presente");
+			    	System.out.println("Inserire prima il modello del telefono");
+			    }
+				
 			}		
 		catch(SQLException e) {	
 			e.printStackTrace();
@@ -101,7 +111,7 @@ public class UtenteDAOImpl implements UtenteDAO{
 		dataSource.setUser("root");
 		dataSource.setPassword("root");
 		dataSource.setUrl("jdbc:mysql://localhost:3306/rubrica");
-				
+		boolean esito = false;		
 		Connection conn = null;
 				
 		try {
@@ -110,10 +120,11 @@ public class UtenteDAOImpl implements UtenteDAO{
 			    PreparedStatement stmtTelSelect =  (PreparedStatement) conn.prepareStatement(TEL_INFO);
 			    stmtTelSelect.setString(1, telNome);
 			    ResultSet res = stmtTelSelect.executeQuery();
+			
 			    if(res.first()){
 			    	id = res.getInt("id");
 			    	PreparedStatement stmtUtenteUpdate =  (PreparedStatement) conn.prepareStatement(INSERT_INFO);
-					
+			    	
 					stmtUtenteUpdate.setString(1,utenteModel.getNome());
 					stmtUtenteUpdate.setString(2,utenteModel.getCognome());
 					stmtUtenteUpdate.setString(3,utenteModel.getData_nascita());
@@ -124,7 +135,7 @@ public class UtenteDAOImpl implements UtenteDAO{
 					stmtUtenteUpdate.setString(8,utenteModel.getEmail());
 					
 					if (stmtUtenteUpdate.executeUpdate() > 0){	
-						return true;
+						esito = true;
 					}
 						
 			    }
@@ -135,7 +146,7 @@ public class UtenteDAOImpl implements UtenteDAO{
 		finally{
 			DbUtils.closeQuietly(conn); 
 		}
-		return false;
+		return esito;
 	}
 
 	public boolean deleteUtenteInfo(String email) {

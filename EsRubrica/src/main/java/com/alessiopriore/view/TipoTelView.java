@@ -20,6 +20,6 @@ public class TipoTelView {
 	}
 
 	public void setTipoTel(TipoTelModel tipoTelModel) {
-		this.tipoTel = tipoTel;
+		this.tipoTel = tipoTelModel;
 	}
 }
